@@ -1,0 +1,593 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build OrderService",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build OrderService",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/order-service:${input:tagname}",
+                "Vigilantes.DaprWorkshop.OrderService"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd OrderService",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "order-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5100",
+                "-dapr-grpc-port",
+                "5101",
+                "-dapr-http-port",
+                "5180",
+                "-metrics-port",
+                "5190",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            },
+            "dependsOn": "Build OrderService"
+        },
+        {
+            "label": "daprd-orderservice-go",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "order-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5100",
+                "-dapr-grpc-port",
+                "5101",
+                "-dapr-http-port",
+                "5180",
+                "-metrics-port",
+                "5190",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Build MakeLineService",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build MakeLineService",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/make-line-service:${input:tagname}",
+                "Vigilantes.DaprWorkshop.MakeLineService"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd MakeLineService",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "make-line-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5200",
+                "-dapr-grpc-port",
+                "5201",
+                "-dapr-http-port",
+                "5280",
+                "-metrics-port",
+                "5290",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            },
+            "dependsOn": "Build MakeLineService"
+        },
+        {
+            "label": "daprd-makelineservice-go",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "make-line-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5200",
+                "-dapr-grpc-port",
+                "5201",
+                "-dapr-http-port",
+                "5280",
+                "-metrics-port",
+                "5290",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Build ReceiptGenerationService",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build ReceiptGenerationService",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/receipt-generation-service:${input:tagname}",
+                "Vigilantes.DaprWorkshop.ReceiptGenerationService"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd ReceiptGenerationService",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "receipt-generation-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5300",
+                "-dapr-grpc-port",
+                "5301",
+                "-dapr-http-port",
+                "5380",
+                "-metrics-port",
+                "5390",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            },
+            "dependsOn": "Build ReceiptGenerationService"
+        },
+        {
+            "label": "daprd-receiptgenerationservice-go",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "receipt-generation-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5300",
+                "-dapr-grpc-port",
+                "5301",
+                "-dapr-http-port",
+                "5380",
+                "-metrics-port",
+                "5390",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Build LoyaltyService",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build LoyaltyService",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/loyalty-service:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LoyaltyService"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd LoyaltyService",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "loyalty-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5400",
+                "-dapr-grpc-port",
+                "5401",
+                "-dapr-http-port",
+                "5480",
+                "-metrics-port",
+                "5490",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            },
+            "dependsOn": "Build LoyaltyService"
+        },
+        {
+            "label": "daprd-loyaltyservice-go",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "loyalty-service",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-app-port",
+                "5400",
+                "-dapr-grpc-port",
+                "5401",
+                "-dapr-http-port",
+                "5480",
+                "-metrics-port",
+                "5490",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*waiting on port.*"
+                }
+            }
+        },
+        {
+            "label": "Build VirtualBarista",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build VirtualBarista",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-barista:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualBarista"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd VirtualBarista",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "virtual-barista",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-dapr-grpc-port",
+                "5501",
+                "-dapr-http-port",
+                "5580",
+                "-metrics-port",
+                "5590",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*dapr initialized. Status: Running.*"
+                }
+            },
+            "dependsOn": "Build VirtualBarista"
+        },
+        {
+            "label": "Build VirtualCustomers",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "ACR Build VirtualCustomers",
+            "command": "az",
+            "type": "process",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/virtual-customers:${input:tagname}",
+                "Vigilantes.DaprWorkshop.VirtualCustomers"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Daprd VirtualCustomers",
+            "command": "daprd",
+            "args": [
+                "-app-id",
+                "virtual-customers",
+                "-components-path",
+                "${workspaceFolder}/components/local",
+                "-dapr-grpc-port",
+                "5601",
+                "-dapr-http-port",
+                "5680",
+                "-metrics-port",
+                "5690",
+                "-config",
+                "${workspaceFolder}/components/local/dapr-workshop.tracing.yaml"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "beginsPattern": "^.*starting Dapr Runtime.*",
+                    "endsPattern": "^.*dapr initialized. Status: Running.*"
+                }
+            },
+            "dependsOn": "Build VirtualCustomers"
+        },
+        {
+            "label": "ACR Build UI",
+            "command": "az",
+            "type": "shell",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.UI/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/ui:${input:tagname}",
+                "Vigilantes.DaprWorkshop.UI"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "npm serve UI",
+            "type": "npm",
+            "script": "serve",
+            "path": "Vigilantes.DaprWorkshop.UI/"
+        },
+        {
+            "label": "ACR Build LocalForwarder",
+            "command": "az",
+            "type": "shell",
+            "args": [
+                "acr",
+                "build",
+                "-r",
+                "${input:registry}",
+                "-f",
+                "${workspaceFolder}/Vigilantes.DaprWorkshop.LocalForwarder/Dockerfile",
+                "-t",
+                "${input:registry}.azurecr.io/dapr-workshop/local-forwarder:${input:tagname}",
+                "Vigilantes.DaprWorkshop.LocalForwarder"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Solution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+    ],
+}

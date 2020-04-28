@@ -1,0 +1,179 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug OrderService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd OrderService",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.OrderService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5100;https://localhost:5102",
+                "DAPR_HTTP_PORT": "5180"
+            }
+        },
+        {
+            "name": "Daprd OrderService (GO)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "daprd-orderservice-go",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.OrderService/golang/main.go",
+            "env": {
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug MakeLineService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd MakeLineService",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.MakeLineService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5200",
+                "DAPR_HTTP_PORT": "5280"
+            }
+        },
+        {
+            "name": "Daprd MakeLineService (GO)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "daprd-makelineservice-go",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.MakeLineService/golang/main.go",
+            "env": {
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug ReceiptGenerationService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd ReceiptGenerationService",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.ReceiptGenerationService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5300",
+                "DAPR_HTTP_PORT": "5380"
+            }
+        },
+        {
+            "name": "Daprd ReceiptGenerationService (GO)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "daprd-receiptgenerationservice-go",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.ReceiptGenerationService/golang/main.go",
+            "env": {
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug LoyaltyService",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd LoyaltyService",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.LoyaltyService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5400",
+                "DAPR_HTTP_PORT": "5480"
+            }
+        },
+        {
+            "name": "Daprd LoyaltyService (GO)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "preLaunchTask": "daprd-loyaltyservice-go",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.LoyaltyService/golang/main.go",
+            "env": {
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            }
+        },
+        {
+            "name": "Debug VirtualBarista",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd VirtualBarista",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.VirtualBarista.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualBarista/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "DOTNETCORE_ENVIRONMENT": "Development",
+                "DAPR_HTTP_PORT": "5580"
+            }
+        },
+        {
+            "name": "Debug VirtualCustomers",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Daprd VirtualCustomers",
+            "program": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp/bin/Debug/netcoreapp3.1/Vigilantes.DaprWorkshop.VirtualCustomers.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Vigilantes.DaprWorkshop.VirtualCustomers/csharp",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "DAPR_HTTP_PORT": "5680"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug All Services",
+            "configurations": [
+                "Debug OrderService",
+                "Debug MakeLineService",
+                "Debug ReceiptGenerationService",
+                "Debug LoyaltyService",
+                "Debug VirtualBarista",
+                "Debug VirtualCustomers"
+            ]
+        }
+    ]
+}

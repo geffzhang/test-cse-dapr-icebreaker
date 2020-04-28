@@ -1,0 +1,8 @@
+@makeline-service = localhost:5200
+@storeId = Redmond
+
+### Get all orders waiting to be made via makeline-service
+GET http://{{makeline-service}}/orders/{{storeId}}
+
+### Complete (delete) an order via makeline-service (NOTE: replace the GUID with an actual orderId)
+DELETE http://{{makeline-service}}/orders/{{storeId}}/029a165d-2c3a-437f-989d-65e0e29e56b1

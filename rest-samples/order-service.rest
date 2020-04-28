@@ -1,0 +1,45 @@
+@order-service = localhost:5100
+@order-service-dapr = localhost:5180
+@storeId = Redmond
+
+### Create an order via order-service POST
+POST http://{{order-service}}/order
+Content-Type: application/json
+ 
+{
+    "storeId": "{{storeId}}",
+    "customerName": "John 'Hannibal' Smith",
+    "loyaltyId": "42",
+    "orderItems": [
+        {
+            "menuItemId": 1,
+            "quantity": 1
+        },
+        {
+            "menuItemId": 2,
+            "quantity": 1
+        },
+        {
+            "menuItemId": 3,
+            "quantity": 3
+        }
+    ]
+}
+
+### Publish an order via order-service dapr sidecar
+POST http://{{order-service-dapr}}/v1.0/publish/order
+Content-Type: application/json
+
+{
+    "orderId": "{{$guid }}",
+    "orderDate": "{{$datetime iso8601}}",
+    "storeId": "{{storeId}}",
+    "customerName": "John 'Hannibal' Smith",
+    "loyaltyId": "42",
+    "orderTotal": 2.99,
+    "orderItems": [{
+        "menuItemId": 1,
+        "menuItemName": "Americano",
+        "quantity": 1
+    }]
+}
